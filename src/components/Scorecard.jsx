@@ -39,11 +39,18 @@ const MatchRow = ({ live, time, team1, team2, score }) => {
 
 const Team = ({ name, icon }) => {
   return (
-    <div className="team flex max-w-24 w-1/3 items-center">
-      {/* <img src={icon} alt={name} className="w-6 h-6 mr-2" /> */}
+    <div className="team flex items-center w-1/3">
+      {icon && (
+        <img
+          src={icon}
+          alt={name}
+          className="w-6 h-6 mr-2 object-contain"
+        />
+      )}
       <span>{name}</span>
     </div>
   );
 };
+
 
 export default Scoreboard;

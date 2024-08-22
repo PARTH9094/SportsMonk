@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       colors: {
         bgColor_primary: "rgba(48, 48, 48, 1)",
+        bgColor_active:'#007bff',
         bgColor: "rgba(34, 34, 34, 1)",
         primaryColor2 : "rgba(195, 204, 90, 1)",
         border: "hsl(var(--border))",

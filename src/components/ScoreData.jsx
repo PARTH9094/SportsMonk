@@ -54,7 +54,7 @@ export default function ScoreData(props) {
     }, []);
 
 
-    const [selectedDate, setSelectedDate] = useState(null);s
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -91,7 +91,7 @@ export default function ScoreData(props) {
                     {selectedDate && <Scorecard_1 selectedDate={selectedDate} />}
                 </div>
                 {/* <Scorecard_1 /> */}
-                <Scorecard_2 className='mt-6' />
+                {/* <Scorecard_2 className='mt-6' /> */}
             </div>
         </div>
     )

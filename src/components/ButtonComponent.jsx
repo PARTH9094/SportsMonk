@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button"
-import React, { useEffect, useState } from 'react';
-import { format, subDays } from 'date-fns';
+import { Button } from "@/components/ui/button";
+import React, { useState } from 'react';
 
 const ButtonComponent = ({ onDateChange }) => {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
   const handleButtonClick = (date) => {
     setSelectedDate(date);
@@ -21,10 +20,13 @@ const ButtonComponent = ({ onDateChange }) => {
       {days.map((day) => (
         <Button
           key={day}
-          className="w-24 h-10 bg-bgColor_primary"
+          className={`w-24 h-10 text-center ${
+            selectedDate === day ? 'bg-bgColor_active' : 'bg-bgColor_primary'
+          }`}
           onClick={() => handleButtonClick(day)}
         >
-          {new Date(day).toLocaleDateString('en-US', { weekday: 'long' })}
+          {new Date(day).toLocaleDateString('en-US', { weekday: 'long' })}<br />
+          {new Date(day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
         </Button>
       ))}
       <Button
@@ -36,4 +38,5 @@ const ButtonComponent = ({ onDateChange }) => {
     </div>
   );
 };
+
 export default ButtonComponent;

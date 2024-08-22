@@ -25,7 +25,7 @@ const Sidebar = () => {
 
 
   return (
-    <div className="mt-12 ml-4 px-4 rounded-[20px] max-w-72 h-screen bg-bgColor text-white flex flex-col ">
+    <div className="mt-12 ml-4 px-4 rounded-[20px] max-w-72  bg-bgColor text-white flex flex-col ">
       <div>
         <div className="text-center mt-8 pt-6 font-bold text-lg mb-7">
           <Span className={" text-white font-extrabold text-[25px] italic"} title='FOOTBALL' />
@@ -60,7 +60,7 @@ const Sidebar = () => {
         <nav>
           <ul>
             <ListItem title="Followed Team" IconLeft={FaShield} IconRight={FaChevronRight} />
-            <ListItem title="Followed Players" IconLeft={FaUser} IconRight={FaChevronRight} />
+            <ListItem className='overflow-hidden' title="Followed Players" IconLeft={FaUser} IconRight={FaChevronRight} />
             <ListItem title="Followed Ground" IconLeft={FiSpeaker} IconRight={FaChevronRight} />
           </ul>
         </nav>
