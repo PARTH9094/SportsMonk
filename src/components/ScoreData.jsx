@@ -25,22 +25,19 @@ export default function ScoreData(props) {
         const BASE_URL = "https://api.sportmonks.com/v3";
         const API_KEY = "KNK63t9NyL1x67TEeQf90vDp6QBbH2IKj0m9rpEc4LhqYXJuZMvPLYqlnPTS";
 
-        // Generate the last 6 days
         const lastSixDays = Array.from({ length: 6 }, (_, i) => {
-            const date = subDays(new Date(), i + 1); // Get the date for each of the last 6 days
+            const date = subDays(new Date(), i + 1); 
             return {
-                formatted: format(date, 'yyyy-MM-dd'), // Format date as YYYY-MM-DD
-                display: format(date, 'EEEE'), // Format date to get the day name (e.g., Wednesday)
+                formatted: format(date, 'yyyy-MM-dd'), 
+                display: format(date, 'EEEE'), 
             };
-        }).reverse(); // Reverse to show the oldest date first
+        }).reverse(); 
 
-        // Function to fetch data for a given date
         const fetchDataForDate = async (date) => {
             const API_URL = `${BASE_URL}/football/fixtures/date/${date.formatted}?api_token=${API_KEY}`;
             try {
                 const response = await fetch(API_URL);
                 const data = await response.json();
-                // Process your data here, if necessary
                 return { ...date, fixtures: data.fixtures || [] };
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -48,7 +45,6 @@ export default function ScoreData(props) {
             }
         };
 
-        // Fetch data for all the last six days
         const fetchAllData = async () => {
             const fetchedDays = await Promise.all(lastSixDays.map(fetchDataForDate));
             setDays(fetchedDays);
@@ -58,7 +54,7 @@ export default function ScoreData(props) {
     }, []);
 
 
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(null);s
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
