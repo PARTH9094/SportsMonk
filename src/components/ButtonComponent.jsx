@@ -7,14 +7,13 @@ const ButtonComponent = ({ onDateChange }) => {
 
   const handleButtonClick = (date) => {
     setSelectedDate(date);
-    onDateChange(date); // Notify parent component of the date change
+    onDateChange(date); 
   };
 
-  // Define the last 6 days
   const days = Array.from({ length: 6 }, (_, i) => {
     const date = new Date();
     date.setDate(date.getDate() - i);
-    return date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    return date.toISOString().split('T')[0];
   }).reverse();
 
   return (
@@ -30,7 +29,7 @@ const ButtonComponent = ({ onDateChange }) => {
       ))}
       <Button
         className="w-24 h-10 bg-bgColor_primary"
-        onClick={() => handleButtonClick(new Date().toISOString().split('T')[0])} // Today’s date
+        onClick={() => handleButtonClick(new Date().toISOString().split('T')[0])} 
       >
         View Calendar
       </Button>
