@@ -26,9 +26,6 @@ function App() {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("Accept", "application/json");
-  // Remove unnecessary headers that you can't set from the client side
-  // myHeaders.append("Access-Control-Allow-Origin", "*");
-  // myHeaders.append("access-control-expose-headers", "*");
   
   const requestOptions = {
     method: "GET",
