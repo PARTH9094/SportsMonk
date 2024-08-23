@@ -14,12 +14,12 @@ const TrendingNews = () => {
         {
             image: 'https://via.placeholder.com/150',
             title: 'Here Are The Top 100 Players And Managers',
-            time: '11 Oct 2023, 06:00 AM'
+            time: '21 Aug 2024, 06:00 AM'
         },
         {
             image: 'https://via.placeholder.com/150',
             title: 'Results And Scores From The Premier League....!!',
-            time: '10 Oct 2023, 09:00 PM'
+            time: '20 Aug 2024, 09:00 PM'
         },
         // Add more news items here
     ];

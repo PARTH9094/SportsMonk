@@ -1,50 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import Scoreboard from './Scorecard';
 
+const fetchScores = async ({ queryKey }) => {
+  const [, selectedDate] = queryKey;
+
+  if (!selectedDate) return [];
+
+  const BASE_URL = "https://api.sportmonks.com/v3";
+  const API_KEY = "KNK63t9NyL1x67TEeQf90vDp6QBbH2IKj0m9rpEc4LhqYXJuZMvPLYqlnPTS";
+  const API_URL = `${BASE_URL}/football/fixtures/date/${selectedDate}?api_token=${API_KEY}&include=scores;league;participants`;
+
+  const response = await fetch(API_URL);
+  if (!response.ok) {
+    throw new Error('Error fetching data');
+  }
+
+  const data = await response.json();
+
+  const leagueMap = {};
+  data.data.forEach((match) => {
+    const leagueId = match.league.id;
+    if (!leagueMap[leagueId]) {
+      leagueMap[leagueId] = {
+        leagueName: match.league.name,
+        leagueIcon: match.league.image_path,
+        matches: []
+      };
+    }
+    const homeTeam = match.participants.find((p) => p.meta.location === "home");
+    const awayTeam = match.participants.find((p) => p.meta.location === "away");
+    leagueMap[leagueId].matches.push({
+      live: match.state_id === 3,
+      time: match.starting_at,
+      team1: { name: homeTeam.name, icon: homeTeam.image_path },
+      team2: { name: awayTeam.name, icon: awayTeam.image_path },
+      score: `${match.scores.find(s => s.score.participant === "home").score.goals} - ${match.scores.find(s => s.score.participant === "away").score.goals}`,
+    });
+  });
+
+  return Object.values(leagueMap);
+};
+
+const useScores = (selectedDate) => {
+  return useQuery({
+    queryKey: ['scores', selectedDate],
+    queryFn: fetchScores,
+    enabled: !!selectedDate, 
+  });
+};
+
 const Scorecard_1 = ({ selectedDate }) => {
-  const [leagues, setLeagues] = useState([]);
+  const { data: leagues = [], isLoading, error,isPending } = useScores(selectedDate);
 
-  useEffect(() => {
-    if (!selectedDate) return;
+  if (isLoading) return <div className='text-white font-normal'>Loading...</div>;
+  if (error) return <div className='text-white font-normal'>Error loading data</div>;
+  if(isPending) return  <div className='text-white font-normal'>No data available</div>;
 
-    const fetchScores = async () => {
-      const BASE_URL = "https://api.sportmonks.com/v3";
-      const API_KEY = "KNK63t9NyL1x67TEeQf90vDp6QBbH2IKj0m9rpEc4LhqYXJuZMvPLYqlnPTS";
-      const API_URL = `${BASE_URL}/football/fixtures/date/${selectedDate}?api_token=${API_KEY}&include=scores;league;participants`;
-
-      try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-
-        const leagueMap = {};
-        data.data.forEach((match) => {
-          const leagueId = match.league.id;
-          if (!leagueMap[leagueId]) {
-            leagueMap[leagueId] = {
-              leagueName: match.league.name,
-              leagueIcon: match.league.image_path,
-              matches: []
-            };
-          }
-          const homeTeam = match.participants.find((p) => p.meta.location === "home");
-          const awayTeam = match.participants.find((p) => p.meta.location === "away");
-          leagueMap[leagueId].matches.push({
-            live: match.state_id === 3,
-            time: match.starting_at,
-            team1: { name: homeTeam.name, icon: homeTeam.image_path },
-            team2: { name: awayTeam.name, icon: awayTeam.image_path },
-            score: `${match.scores.find(s => s.score.participant === "home").score.goals} - ${match.scores.find(s => s.score.participant === "away").score.goals}`,
-          });
-        });
-
-        setLeagues(Object.values(leagueMap));
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchScores();
-  }, [selectedDate]);
+  console.log(status)
 
   return (
     <div>
@@ -56,23 +69,6 @@ const Scorecard_1 = ({ selectedDate }) => {
           matches={league.matches}
         />
       ))}
-
-      {/* {leagues.map((league, index) => (
-        <div key={index}>
-          {league.length > 0 ? (
-            <Scoreboard
-              tournament={league.tournament} // Replace with your tournament data
-              stage={league.stage} // Replace with your stage data
-              matches={league}
-            />
-          ) : (
-            <div>No matches available for this date.</div>
-          )}
-        </div>
-      ))}; */}
-
-
-
     </div>
   );
 };
