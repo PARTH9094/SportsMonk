@@ -64,7 +64,6 @@ export default function ScoreData() {
           <DropdownMenuTrigger className='text-white'>All Matches</DropdownMenuTrigger>
         </DropdownMenu>
       </div>
-
       <div>
         <ButtonComponent onDateChange={handleDateChange} />
         {error && <div>Error fetching matches</div>}

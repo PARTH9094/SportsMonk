@@ -35,7 +35,7 @@ const fetchScores = async ({ queryKey }) => {
       time: match.starting_at,
       team1: { name: homeTeam.name, icon: homeTeam.image_path },
       team2: { name: awayTeam.name, icon: awayTeam.image_path },
-      score: `${match.scores.find(s => s.score.participant === "home").score.goals} - ${match.scores.find(s => s.score.participant === "away").score.goals}`,
+      score: `${match.scores.find(s => s.score.participant === "home" && s.description === "2ND_HALF").score.goals} - ${match.scores.find(s => s.score.participant === "away" && s.description === "2ND_HALF").score.goals}`,
     });
   });
 
