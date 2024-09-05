@@ -2,14 +2,17 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Scoreboard from './Scorecard';
 
+const apiKey = import.meta.env.VITE_API_KEY; 
+
+console.log("API Key",apiKey)
+
 const fetchScores = async ({ queryKey }) => {
   const [, selectedDate] = queryKey;
 
   if (!selectedDate) return [];
 
   const BASE_URL = "https://api.sportmonks.com/v3";
-  const API_KEY = "KNK63t9NyL1x67TEeQf90vDp6QBbH2IKj0m9rpEc4LhqYXJuZMvPLYqlnPTS";
-  const API_URL = `${BASE_URL}/football/fixtures/date/${selectedDate}?api_token=${API_KEY}&include=scores;league;participants`;
+  const API_URL = `${BASE_URL}/football/fixtures/date/${selectedDate}?api_token=${apiKey}&include=scores;league;participants`;
 
   const response = await fetch(API_URL);
   if (!response.ok) {
@@ -35,7 +38,7 @@ const fetchScores = async ({ queryKey }) => {
       time: match.starting_at,
       team1: { name: homeTeam.name, icon: homeTeam.image_path },
       team2: { name: awayTeam.name, icon: awayTeam.image_path },
-      score: `${match.scores.find(s => s.score.participant === "home" && s.description === "2ND_HALF").score.goals} - ${match.scores.find(s => s.score.participant === "away" && s.description === "2ND_HALF").score.goals}`,
+      score: `${match.scores.find(s => s.score.participant === "home" && s.description === "2ND_HALF")?.score.goals || 0} - ${match.scores.find(s => s.score.participant === "away" && s.description === "2ND_HALF")?.score.goals || 0}`,
     });
   });
 
@@ -46,18 +49,15 @@ const useScores = (selectedDate) => {
   return useQuery({
     queryKey: ['scores', selectedDate],
     queryFn: fetchScores,
-    enabled: !!selectedDate, 
+    enabled: !!selectedDate,
   });
 };
 
 const Scorecard_1 = ({ selectedDate }) => {
-  const { data: leagues = [], isLoading, error,isPending } = useScores(selectedDate);
+  const { data: leagues = [], isLoading, error } = useScores(selectedDate);
 
   if (isLoading) return <div className='text-white font-normal'>Loading...</div>;
   if (error) return <div className='text-white font-normal'>Error loading data</div>;
-  if(isPending) return  <div className='text-white font-normal'>No data available</div>;
-
-  console.log(status)
 
   return (
     <div>
@@ -65,7 +65,7 @@ const Scorecard_1 = ({ selectedDate }) => {
         <Scoreboard
           key={index}
           tournament={league.leagueName}
-          stage="Quarter Finals" 
+          stage="Quarter Finals"
           matches={league.matches}
         />
       ))}

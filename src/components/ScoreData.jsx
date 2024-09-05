@@ -11,11 +11,12 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useQuery } from '@tanstack/react-query';
+const apiKey = import.meta.env.VITE_API_KEY; 
 
 const fetchFixtures = async (date) => {
   const BASE_URL = "https://api.sportmonks.com/v3";
-  const API_KEY = "KNK63t9NyL1x67TEeQf90vDp6QBbH2IKj0m9rpEc4LhqYXJuZMvPLYqlnPTS";
-  const API_URL = `${BASE_URL}/football/fixtures/date/${date}?api_token=${API_KEY}`;
+  // const API_KEY = conf.apiKey;
+  const API_URL = `${BASE_URL}/football/fixtures/date/${date}?api_token=${apiKey}`;
 
   const response = await fetch(API_URL);
   if (!response.ok) {
