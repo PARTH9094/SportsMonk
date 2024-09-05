@@ -54,11 +54,11 @@ export default function ScoreData() {
   };
 
   return (
-    <div className='mt-5 ml-6 bg-bgColor rounded-[20px] w-[732px]'>
+    <div className='mt-5 ml-6 bg-primaryBlack rounded-[20px] w-[732px]'>
       <div className='flex justify-between items-center pl-3 pt-5 pr-5'>
         <div className='flex items-center'>
-          <LuDot className='text-primaryColor2' size={20} />
-          <Label htmlFor="live" className='font-bold text-primaryColor2 p-4 '>Live</Label>
+          <LuDot className='text-primaryGreen' size={20} />
+          <Label htmlFor="live" className='font-bold text-primaryGreen p-4 '>Live</Label>
         </div>
         <SearchInput placeholder={"Search for Matches"} className='w-72 h-8' />
         <DropdownMenu >

@@ -2,7 +2,7 @@ import React from 'react';
 
 const NewsCard = ({ image, title, time }) => {
   return (
-    <div className="flex p-4 mb-4 bg-bgColor_primary rounded-lg">
+    <div className="flex p-4 mb-4 bg-primaryGrey rounded-lg">
       <img src={image} alt={title} className="w-20 h-20 rounded-lg object-cover mr-4" />
       <div className="flex flex-col justify-between">
         <h3 className="text-white text-sm font-semibold">{title}</h3>

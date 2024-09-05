@@ -1,12 +1,8 @@
 import React from 'react';
-import { FaHome, FaUser, FaTrophy, FaMapMarkerAlt, FaComments, FaRegBell, FaCog, FaDownload, FaChevronRight, FaUserCircle, FaSignOutAlt, FaMoon, FaSun } from 'react-icons/fa';
+import { FaUser, FaRegBell, FaCog, FaDownload, FaChevronRight } from 'react-icons/fa';
 import { LuHome, LuUsers } from "react-icons/lu";
-import { PiSpeakerHifiThin } from "react-icons/pi";
 import { FiMessageCircle, FiSpeaker } from "react-icons/fi";
-import { CiSearch } from "react-icons/ci";
 import { FaShield } from "react-icons/fa6";
-import { Input } from "@/components/ui/input"
-
 import Span from '../Span'
 import ListItem from '../ListItem';
 import DarkModeToggle from '../ToggleButton';
@@ -25,25 +21,13 @@ const Sidebar = () => {
 
 
   return (
-    <div className="mt-12 ml-4 px-4 rounded-[20px] max-w-72  bg-bgColor text-white flex flex-col ">
+    <div className="mt-12 ml-4 px-4 rounded-[20px] max-w-72  bg-primaryBlack text-white flex flex-col ">
       <div>
         <div className="text-center mt-8 pt-6 font-bold text-lg mb-7">
           <Span className={" text-white font-extrabold text-[25px] italic"} title='FOOTBALL' />
-          <Span className="text-primaryColor2 font-normal text-[25px] italic" title="SHURU"></Span>
+          <Span className="text-primaryGreen font-normal text-[25px] italic" title="SHURU"></Span>
         </div>
-
-        {/* <div className="px-4 mt-7 relative">
-          <CiSearch className='absolute top-2 h-6 w-6 left-6' />
-          <input
-            type="text"
-            placeholder="Search"
-            className="w-full py-2 placeholder:text-center pl-8 pr-4 rounded-lg bg-gray-800 text-white focus:outline-none"
-          />
-        </div> */}
-
         <SearchInput placeholder={"Search"} className='px-4' />
-
-
         <nav className="mt-[30px]">
           <ul>
             <ListItem IconLeft={LuHome} title="Home" isBold={true} textSize="text-xl" />

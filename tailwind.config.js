@@ -18,10 +18,9 @@ module.exports = {
     },
     extend: {
       colors: {
-        bgColor_primary: "rgba(48, 48, 48, 1)",
-        bgColor_active:'#007bff',
-        bgColor: "rgba(34, 34, 34, 1)",
-        primaryColor2 : "rgba(195, 204, 90, 1)",
+        primaryGreen: "rgba(195, 204, 90, 1)",
+        primaryGrey: "rgba(48, 48, 48, 1)",
+        primaryBlack: "rgba(34, 34, 34, 1)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -61,6 +60,9 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backgroundColor: {
+        page: 'rgba(48, 48, 48, 1)',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -75,6 +77,9 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        body: ["Poppins", "system-ui", "-apple-system", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

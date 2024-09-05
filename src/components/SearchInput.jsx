@@ -1,5 +1,5 @@
 import React from 'react';
-import { CiSearch } from 'react-icons/ci'; // Ensure you have react-icons installed
+import { CiSearch } from 'react-icons/ci'; 
 import { Input } from "@/components/ui/input"
 
 const SearchInput = ({placeholder}) => {
@@ -9,7 +9,7 @@ const SearchInput = ({placeholder}) => {
       <Input
         type="text"
         placeholder={placeholder}
-        className="w-full py-2 placeholder:text-center pl-9 pr-4 rounded-lg bg-bgColor_primary text-white focus:outline-none"
+        className="w-full py-2 placeholder:text-center pl-9 pr-4 rounded-lg bg-primaryGrey text-white focus:outline-none"
       />
     </div>
   );

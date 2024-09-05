@@ -21,13 +21,13 @@ const DarkModeToggle = ({ onToggle }) => {
         >
             <Button
                 onClick={enableLightMode}
-                className={`ml-2 pl-6 ${isDarkMode ? 'text-gray-400' : 'text-white'} ${!isDarkMode ? 'bg-bgColor' : 'bg-bgColor_primary'}`}
+                className={`ml-2 pl-6 ${isDarkMode ? 'text-gray-400' : 'text-white'} ${!isDarkMode ? 'bg-primaryBlack' : 'bg-primaryGrey'}`}
             >
                 <FaSun className={`h-5 w-5 ${isDarkMode ? 'text-gray-400' : 'text-yellow-400'}`} /> Light
             </Button>
             <Button
                 onClick={enableDarkMode}
-                className={`mr-2 pl-6 ${isDarkMode ? 'text-white' : 'text-gray-400'} ${isDarkMode ? 'bg-bgColor' : 'bg-bgColor_primary'}`}
+                className={`mr-2 pl-6 ${isDarkMode ? 'text-white' : 'text-gray-400'} ${isDarkMode ? 'bg-primaryBlack' : 'bg-primaryGrey'}`}
             >
                 <FaMoon className={`h-5 w-5 ${isDarkMode ? 'text-blue-400' : 'text-gray-400'}`} /> Dark
             </Button>

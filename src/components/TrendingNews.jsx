@@ -1,5 +1,4 @@
 import React from 'react'
-import ListItem from './ListItem'
 import { FaChevronRight } from 'react-icons/fa';
 import NewsList from './Newslist';
 import CustomCard from './CustomCard';
@@ -21,11 +20,10 @@ const TrendingNews = () => {
             title: 'Results And Scores From The Premier League....!!',
             time: '20 Aug 2024, 09:00 PM'
         },
-        // Add more news items here
     ];
 
     return (
-        <div className="bg-bgColor p-6 rounded-lg">
+        <div className="bg-primaryBlack p-6 rounded-lg">
             <div className='flex justify-between'>
 
                 <h2 className="text-white text-lg font-semibold">Trending News</h2>

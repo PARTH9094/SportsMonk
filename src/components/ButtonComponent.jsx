@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 
 const ButtonComponent = ({ onDateChange }) => {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false); // State to manage calendar visibility
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false); 
 
   const handleButtonClick = (date) => {
     setSelectedDate(date);
@@ -18,14 +18,14 @@ const ButtonComponent = ({ onDateChange }) => {
   }).reverse();
 
   const handleCalendarClick = () => {
-    setIsCalendarOpen(!isCalendarOpen); // Toggle calendar visibility
+    setIsCalendarOpen(!isCalendarOpen); 
   };
 
   const handleDateSelect = (date) => {
     const formattedDate = date.toISOString().split('T')[0];
     setSelectedDate(formattedDate);
     onDateChange(formattedDate);
-    setIsCalendarOpen(false); // Close the calendar after selecting a date
+    setIsCalendarOpen(false); 
   };
 
   return (
@@ -33,8 +33,8 @@ const ButtonComponent = ({ onDateChange }) => {
       {days.map((day) => (
         <Button
           key={day}
-          className={`w-24 h-10 text-center ${
-            selectedDate === day ? 'bg-bgColor_active' : 'bg-bgColor_primary'
+          className={`w-24 h-10 text-center text-white rounded-sm ${
+            selectedDate === day ? 'bg-primaryBlack' : 'bg-primaryGrey'
           }`}
           onClick={() => handleButtonClick(day)}
         >
@@ -44,7 +44,7 @@ const ButtonComponent = ({ onDateChange }) => {
       ))}
       <div>
         <Button
-          className="w-24 h-10 bg-bgColor_primary"
+          className="w-24 h-10 bg-primaryGrey text-white"
           onClick={handleCalendarClick}
         >
           View Calendar

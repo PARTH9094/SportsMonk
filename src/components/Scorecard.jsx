@@ -2,7 +2,7 @@ import React from 'react';
 
 const Scoreboard = ({ tournament, stage, matches }) => {
     return (
-      <div className="scoreboard bg-bgColor text-white rounded-lg p-4">
+      <div className="scoreboard bg-primaryBlack text-white rounded-lg p-4">
         <div className="header flex justify-between items-center border-b pb-2 mb-2">
           <div className="tournament-name font-semibold">
             {tournament}
@@ -24,7 +24,7 @@ const Scoreboard = ({ tournament, stage, matches }) => {
 
 const MatchRow = ({ live, time, team1, team2, score }) => {
   return (
-    <div className={`flex justify-between items-center p-2 ${live ? 'bg-bgColor_primary rounded-xl'  : 'bg-bgColor'}`}>
+    <div className={`flex justify-between items-center p-2 ${live ? 'bg-primaryGrey rounded-xl'  : 'bg-primaryBlack'}`}>
       <div className="time text-gray-400 w-1/4">
         {live ? <span className="text-green-500">Live</span> : time}
       </div>
